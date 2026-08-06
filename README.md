@@ -281,3 +281,11 @@ MVP の機能を絞り込む	まずはテキストベースの会話機能を実
 技術検証を先に行う	本格的な実装に入る前に、各 API の動作確認を行う
 React や Next.js について 最近注目されている React や Next.js については、 本リリース後に組み込む方向で検討 します。
 理由: React や Next.js は学習コストが高く、MVP 完成までに時間がかかる可能性がある まずは Django Templates で MVP を完成させ、動くものを作ることを優先する MVP が完成してから、React や Next.js の導入を検討する方が、開発期間内に完成しやすい
+
+
+
+
+## 画面遷移図
+
+以下のFigmaで作成しました:
+https://www.figma.com/design/gEno7j7gJY9Kb4seWJN6wH/SceneTalk?node-id=0-1&p=f&t=3HwMsyjCHmGwoKPs-0
