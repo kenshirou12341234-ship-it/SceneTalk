@@ -6,4 +6,4 @@ https://www.figma.com/design/gEno7j7gJY9Kb4seWJN6wH/SceneTalk?node-id=0-1&p=f&t=
 
 ## ER図
 ER図を作成しました
-[![Image from Gyazo](https://i.gyazo.com/930ea43524c8dbbd61c817197d849911.png)](https://gyazo.com/930ea43524c8dbbd61c817197d849911)
+[![Image from Gyazo](https://i.gyazo.com/978e272d837ae3307ae9b909bc1ad557.png)](https://gyazo.com/978e272d837ae3307ae9b909bc1ad557)
