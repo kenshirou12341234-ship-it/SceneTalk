@@ -1,7 +1,0 @@
-[tool.ruff]
-line-length = 88
-target-version = "py312"
-
-[tool.black]
-line-length = 88
-target-version = ["py312"]
