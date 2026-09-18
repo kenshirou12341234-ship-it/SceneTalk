@@ -1,0 +1,44 @@
+{% load tailwind_tags %}
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}My App{% endblock %}</title>
+  {% tailwind_css %}
+
+</head>
+
+<body>
+  <header>
+    {% if user.is_authenticated %}
+      <span class="text-sm text-black">こんにちは、{{ user.email }}さん</span>
+      <form method="post" action="{% url 'accounts:logout' %}" class="inline">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 hover:bg-red-600 text-black px-3 py-2 rounded-md text-sm font-medium shadow-md transition duration-200">
+
+          ログアウト
+        </button>
+      </form>
+    {% endif %}
+  </header>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer>
+    {% block footer %}
+      {% if user.is_authenticated %}
+        <span>こんにちは、{{ user.email }}さん</span>
+      {% else %}
+        <a href="{% url 'accounts:login' %}">ログイン</a>
+        <a href="{% url 'accounts:register' %}">新規登録</a>
+      {% endif %}
+    {% endblock %}
+  </footer>
+</body>
+</html>

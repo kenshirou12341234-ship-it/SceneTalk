@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>新規登録</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">登録する</button>
+</form>
+
+<p>
+  すでにアカウントをお持ちの方は
+  <a href="{% url 'accounts:login' %}" class="text-blue-600 hover:text-blue-500">
+    こちら
+  </a>
+</p>
+{% endblock %}

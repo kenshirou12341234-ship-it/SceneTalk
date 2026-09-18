@@ -1,0 +1,36 @@
+scene_name,turn_order,npc_en,staff_jp,staff_en,display_order
+居酒屋,staff_first,,いらっしゃいませ,Welcome!,1
+居酒屋,staff_first,,何名様ですか?,	How many people are in your group?,2
+居酒屋,npc_first,There are two people.,お席にご案内します,I will show you to your seat.,3
+居酒屋,npc_first,thanks.,,,4
+居酒屋,staff_first,,こちらメニュー表です,Here is the menu.,5
+居酒屋,staff_first,,ご注文お決まりになりましたらお呼び下さい,Please call us when you are ready to order.,6
+居酒屋,npc_first,Excuse me can we order?,ご注文お伺いします,May I take your order?,7
+居酒屋,npc_first,I'd like some tofu and Japanese fried chicken please.,お飲み物は何になさいますか?,What would you like to drink?.,8
+居酒屋,npc_first,Two draft beers please.,わかりました,Understood,9
+居酒屋,staff_first,,ご注文は以上でよろしいでしょうか?,Is that all for your order?,10
+居酒屋,staff_first,,こちらお通しです,This is the appetizer.,11
+居酒屋,staff_first,,こちら生ビールと豆腐と唐揚げです,Here is your draft beer and tofu and fried chicken.,12
+居酒屋,staff_first,,ご注文は揃いましたでしょうか?,Have all your orders arrived?,13
+居酒屋,npc_first,yes thanks,,,14
+居酒屋,npc_first,"Can I have a wet towel, and small plate, please?",,,15
+居酒屋,staff_first,,お皿・グラスをおさげします,I will clear the plates and glasses.,16
+居酒屋,npc_first,Where is the restroom?,,,17
+居酒屋,staff_first,,まっすぐ行って突き当たりを右に曲がったところにあります,Go straight and turn right at the end.,18
+居酒屋,npc_first,"Check, please.",お会計はご一緒でいいですか?,Would you like to pay together?,19
+居酒屋,npc_first,yes,お会計が4500円です,That will be 4500 yen.,20
+居酒屋,npc_first,Do you accept credit cards?,はい　使えます,Yes we do,21
+居酒屋,staff_first,,こちらレシートです,Here is your receipt.,22
+居酒屋,staff_first,,ありがとうございました。またのお越しをお待ちしております,"Thank you very much. We hope to see you again.",23
+カフェ,staff_first,,いらっしゃいませ,Welcome!,24
+カフェ,staff_first,,空いているお席へどうぞ,Please feel free to take any available seat,25
+カフェ,staff_first,,ご注文はお決まりですか?,Are you ready to order?,26
+カフェ,npc_first,"I'll have a hot coffee and sandwich, please",,,27
+カフェ,staff_first,,サイズはどうされますか?,What size would you like?,28
+カフェ,npc_first,"Medium, please",かしこまりました, Certainly,29
+カフェ,staff_first,,店内でお召し上がりですか?,For here or to go?,30
+カフェ,npc_first,yes,,,31
+カフェ,staff_first,,お待たせしましたホットコーヒーとサンドイッチですごゆっくりどうぞ,Thank you for waiting. Here is your hot coffee and sandwich. Enjoy,32
+カフェ,npc_first,"Check, please.",お会計は1200円になります,That'll be 1200 yen,33
+カフェ,staff_first,,800円のお返しです,Here is your change of 800 yen,34
+カフェ,staff_first,,ありがとうございました,"Thank you, have a nice day",35

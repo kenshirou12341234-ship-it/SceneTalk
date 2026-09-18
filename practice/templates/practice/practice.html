@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if error_message %}
+  <p>{{ error_message }}</p>
+{% else %}
+  <div class="relative w-full min-h-screen" 
+       style="background-image: url('{% static scene.background_image %}'); 
+              background-size: cover; 
+              background-position: center;">
+
+    <!-- 外国人NPCの立ち絵(左側・固定) -->
+    <div class="absolute bottom-50 left-10">
+      <img src="{% static 'images/characters/npc_foreign3.png' %}" 
+           alt="NPC" 
+           class="h-80 object-contain">
+    </div>
+
+    <!-- 自分(日本人)の立ち絵(右側・固定) -->
+    <div class="absolute bottom-50 right-10">
+      <img src="{% static 'images/characters/player_japanese4.png' %}" 
+           alt="自分" 
+           class="h-80 object-contain">
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0">
+      <!-- 会話ボックス(画面下部に固定) -->
+      <div class="bg-opacity-70 text-white p-6 min-h-[160px] pb-20">
+
+        <!-- id="phrase-area" を追加:JSでこのブロック全体を書き換える想定 -->
+        <div id="phrase-area">
+          <!-- NPCの英語セリフ(常に表示) -->
+          <div class="flex justify-start">
+            <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs" id="npc-text">
+              {{ current_phrase.npc_en }}
+            </div>
+          </div>
+
+          <!-- staff_first のときだけ日本語の問題文を表示 -->
+          {% if current_phrase.turn_order == 'staff_first' %}
+            <div class="flex justify-end">
+              <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs" id="staff-jp-text">
+                {{ current_phrase.staff_jp }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- feedback表示用エリア:JSから textContent を書き換える -->
+        <div id="feedback-area">
+          {% if feedback and not feedback.is_correct %}
+            <div class="flex justify-start">
+              <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs">
+                もう一度お願いします
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <!-- フォームは常にDOM上に存在させ、turn_orderで表示/非表示を切り替える -->
+      <form id="answer-form" data-scene-id="{{ scene.id }}"
+            class="fixed bottom-20 left-0 w-full flex gap-2 p-4 bg-white border-t"
+            style="{% if current_phrase.turn_order == 'npc_first' %}display: none;{% endif %}">
+        {% csrf_token %}
+        <input type="text" name="answer" id="answer-input" class="bg-gray-200 border rounded px-3 py-2 flex-1">
+        <button type="submit" class="bg-gray-200 hover:bg-white-600 text-black px-4 py-2 rounded">送信</button>
+      </form>
+
+    </div>
+  </div>
+{% endif %}
+
+<footer class="bg-gray-800 text-white p-4">
+  <div class="practice-controls flex justify-between max-w-4xl mx-auto">
+    <a href="{% url 'practice:prev' scene.id %}">前の問題に戻る</a>
+    <a href="{% url 'scenes:scene_list' %}">←シーン選択画面に戻る</a>
+    <a href="{% url 'practice:restart' scene_id=scene.id %}">最初からやり直す</a>
+  </div>
+</footer>
+
+<script src="{% static 'practice/js/practice.js' %}"></script>
+
+{% endblock %}

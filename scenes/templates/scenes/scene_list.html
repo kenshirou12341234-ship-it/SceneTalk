@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block title %}シーン一覧{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">シーン一覧</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {% for scene in scenes %}
+      <a href="{% url 'scenes:phrase_list' scene.id %}" class="block bg-white rounded-lg shadow hover:shadow-md transition p-5 border border-gray-100">
+
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ scene.name }}</h2>
+        <p class="text-sm text-gray-600">{{ scene.description }}</p>
+      </a>
+    {% empty %}
+      <p class="text-gray-500">シーンが登録されていません。</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

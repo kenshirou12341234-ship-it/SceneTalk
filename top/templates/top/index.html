@@ -1,13 +1,21 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>SceneTalk</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+
+{% block content %}
+<div>
   <h1>SceneTalkへようこそ</h1>
-  <p>サービスの説明文がここに入ります</p>
-  <a href="#">新規登録</a>
-  <a href="#">ログイン</a>
-</body>
-</html>
+  <p>このアプリは、接客シーンに特化したAI英会話練習アプリです。
+飲食店等で働くスタッフが、外国人のお客様への対応を練習できます。
+</p>
+{% if user.is_authenticated %}
+
+<p>
+  こちらからシーンを選択してください
+  <a href="{% url 'scenes:scene_list' %}" class="text-blue-600 hover:text-blue-500">
+    シーン一覧
+  </a>
+</p>
+{% endif %}
+
+</div>
+{% endblock %}

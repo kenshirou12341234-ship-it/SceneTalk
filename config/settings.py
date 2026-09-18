@@ -13,9 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv   # ← この行を追加
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 # Application definition
 
@@ -38,7 +43,17 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "top",
+    "accounts",
+    "scenes",
+    "practice",
+    "tailwind",
+    "theme",
 ]
+TAILWIND_APP_NAME = 'theme'
+
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -56,7 +71,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -77,7 +92,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+        default='sqlite:///db.sqlite3',
         conn_max_age=600,
     )
 }
@@ -105,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ja"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tokyo"
 
 USE_I18N = True
 
@@ -116,17 +131,46 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
+if DEBUG:
+    # 開発環境:collectstatic不要でstaticファイルを直接参照できる
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+else:
+    # 本番環境:ファイル名にハッシュを付与してキャッシュ最適化
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGIN_REDIRECT_URL = 'top:index'
+LOGOUT_REDIRECT_URL = 'top:index'
+
+
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://127.0.0.1:8000,http://localhost:8000'
+).split(',')
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "0.0.0.0",  # Docker環境用
+]
+
+# NPMホストの設定(Docker環境用)
+NPM_BIN_PATH = "/usr/bin/npm"
