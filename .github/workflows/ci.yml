@@ -1,0 +1,55 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # テスト用のデータベース（PostgreSQL）をGitHub上に一時的に立ち上げる
+      db:
+        image: postgres:16
+        env:
+          POSTGRES_DB: scenetalk_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        # DBが完全に立ち上がるまで待機するヘルスチェック
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: 'pip' # pipのキャッシュを有効化してCIを高速化
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Ruff Check (Linter)
+      # 構文エラーやインポート漏れをチェック（factory_boyの警告はパスさせる）
+      run: ruff check
+
+    - name: Run Tests (pytest)
+      # GitHub Actionsの仮想環境内のDBに向けて環境変数を渡し、テストを実行
+      env:
+        DATABASE_URL: postgres://postgres:password@localhost:5432/scenetalk_test
+        SECRET_KEY: ci-test-secret-key-12345
+        DEBUG: "True"
+        GEMINI_API_KEY: "dummy-key-for-testing" 
+      run: pytest
