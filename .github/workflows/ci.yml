@@ -43,7 +43,7 @@ jobs:
 
     - name: Run Ruff Check (Linter)
       # 構文エラーやインポート漏れをチェック（factory_boyの警告はパスさせる）
-      run: ruff check
+      run: python -m ruff check
 
     - name: Run Tests (pytest)
       # GitHub Actionsの仮想環境内のDBに向けて環境変数を渡し、テストを実行
@@ -52,4 +52,4 @@ jobs:
         SECRET_KEY: ci-test-secret-key-12345
         DEBUG: "True"
         GEMINI_API_KEY: "dummy-key-for-testing" 
-      run: pytest
+      run: python -m pytest
