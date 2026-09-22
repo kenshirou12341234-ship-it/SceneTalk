@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
-from scenes.models import Scene, Phrase
+
+from scenes.models import Phrase, Scene
+
 
 class Command(BaseCommand):
     help = "居酒屋シーンの会話フローを投入します"
@@ -38,4 +40,6 @@ class Command(BaseCommand):
                 order=i,
             )
 
-        self.stdout.write(self.style.SUCCESS("居酒屋シーンの会話フローを投入しました 🍺"))
+        self.stdout.write(
+            self.style.SUCCESS("居酒屋シーンの会話フローを投入しました 🍺")
+        )

@@ -5,46 +5,49 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('scenes', '0004_remove_phrase_order'),
+        ("scenes", "0004_remove_phrase_order"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='phrase',
+            name="phrase",
             options={},
         ),
         migrations.RemoveField(
-            model_name='phrase',
-            name='created_at',
+            model_name="phrase",
+            name="created_at",
         ),
         migrations.RemoveField(
-            model_name='phrase',
-            name='updated_at',
+            model_name="phrase",
+            name="updated_at",
         ),
         migrations.AlterField(
-            model_name='phrase',
-            name='display_order',
+            model_name="phrase",
+            name="display_order",
             field=models.PositiveIntegerField(),
         ),
         migrations.AlterField(
-            model_name='phrase',
-            name='english_text',
+            model_name="phrase",
+            name="english_text",
             field=models.CharField(max_length=255),
         ),
         migrations.AlterField(
-            model_name='phrase',
-            name='japanese_text',
+            model_name="phrase",
+            name="japanese_text",
             field=models.CharField(max_length=255),
         ),
         migrations.AlterField(
-            model_name='phrase',
-            name='scene',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='scenes.scene'),
+            model_name="phrase",
+            name="scene",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="scenes.scene"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='phrase',
-            constraint=models.UniqueConstraint(fields=('scene', 'japanese_text'), name='unique_scene_japanese_text'),
+            model_name="phrase",
+            constraint=models.UniqueConstraint(
+                fields=("scene", "japanese_text"), name="unique_scene_japanese_text"
+            ),
         ),
     ]

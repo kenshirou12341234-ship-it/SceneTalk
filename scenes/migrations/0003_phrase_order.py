@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('scenes', '0002_phrase'),
+        ("scenes", "0002_phrase"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='phrase',
-            name='order',
+            model_name="phrase",
+            name="order",
             field=models.IntegerField(default=0),
         ),
     ]

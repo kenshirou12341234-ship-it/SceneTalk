@@ -16,14 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-
+from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('', include('top.urls')), 
+    path("accounts/", include("accounts.urls")),
+    path("", include("top.urls")),
     path("scenes/", include("scenes.urls")),
-    path('practice/', include('practice.urls')),     # ← prefix を付ける
-
+    path("practice/", include("practice.urls")),  # ← prefix を付ける
 ]

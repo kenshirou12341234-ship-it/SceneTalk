@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}{{ scene.name }}{% endblock %}
@@ -10,33 +9,60 @@
 <div class="max-w-4xl mx-auto px-4 py-8 min-h-screen" 
      style="background-image: url('{% static scene.background_image %}'); 
             background-size: cover; 
-            background-position: center ;
+            background-position: center;
             min-height: 1200px;">
 
-
-  <div class="bg-white bg-opacity-80 rounded-lg p-4 mb-6">
+  <!-- シーン情報ヘッダー -->
+  <div class="bg-white bg-opacity-90 rounded-lg p-5 mb-6 shadow">
     <h1 class="text-2xl font-bold text-gray-800 mb-2">{{ scene.name }}</h1>
-    <p class="text-sm text-gray-600">{{ scene.description }}</p>
-
+    <p class="text-sm text-gray-600 leading-relaxed">{{ scene.description }}</p>
   </div>
-  <div class="space-y-4">
-    {% for phrase in phrases %}
-      <div class="bg-white rounded-lg shadow p-5 border border-gray-100">
-        <p class="text-gray-800 font-medium">{{ phrase.japanese_text }}</p>
-        <p class="text-gray-800 text-sm mt-1">{{ phrase.english_text }}</p>
-      </div>
-    {% empty %}
-      <p class="text-gray-500">フレーズが登録されていません。</p>
-    {% endfor %}
+
+  <!-- 箇条書きフレーズリスト -->
+  <div class="bg-white bg-opacity-95 rounded-lg shadow p-6">
+    <ul class="divide-y divide-gray-200">
+      {% for phrase in phrases %}
+        
+        <!-- 1. 外国人客（NPC）の発話がある場合 -->
+        {% if phrase.npc_en %}
+          <li class="py-3 flex items-start text-base">
+            <span class="font-bold text-blue-600 w-24 shrink-0">[外国人客]</span>
+            <div class="text-gray-800 font-medium">
+              {{ phrase.npc_en }}
+            </div>
+          </li>
+        {% endif %}
+
+        <!-- 2. 店員（STAFF：自分）の発話がある場合 -->
+        {% if phrase.staff_en or phrase.staff_jp %}
+          <li class="py-3 flex items-start text-base">
+            <span class="font-bold text-green-600 w-24 shrink-0">[店員(あなた)]</span>
+            <div class="space-y-1">
+              {% if phrase.staff_en %}
+                <p class="text-gray-900 font-semibold">{{ phrase.staff_en }}</p>
+              {% endif %}
+              {% if phrase.staff_jp %}
+                <p class="text-sm text-gray-500">{{ phrase.staff_jp }}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endif %}
+
+      {% empty %}
+        <li class="py-4 text-gray-500 text-center">フレーズが登録されていません。</li>
+      {% endfor %}
+    </ul>
   </div>
 
   <!-- 会話練習ボタン -->
   <div class="mt-8 text-center">
-    <a href="{% url 'practice:practice' scene_id=scene.id %}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors duration-200">
+    <a href="{% url 'practice:practice' scene_id=scene.id %}" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors duration-200 shadow-md">
       会話練習をはじめる
     </a>
   </div>
 
-  <a href="{% url 'scenes:scene_list' %}" class="inline-block mt-6 text-blue-600 hover:underline">← シーン一覧に戻る</a>
+  <div class="text-center mt-6">
+    <a href="{% url 'scenes:scene_list' %}" class="inline-block text-blue-600 hover:underline">← シーン一覧に戻る</a>
+  </div>
 </div>
 {% endblock %}

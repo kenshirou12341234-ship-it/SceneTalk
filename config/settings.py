@@ -10,28 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
+import logging
 import os
+from pathlib import Path
+
 import dj_database_url
-from dotenv import load_dotenv   # ← この行を追加
-
-
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / '.env')
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # Application definition
 
@@ -49,15 +49,16 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
 ]
-TAILWIND_APP_NAME = 'theme'
 
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+TAILWIND_APP_NAME = "theme"
 
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware", 
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -71,7 +72,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -91,8 +92,8 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
+    "default": dj_database_url.config(
+        default="sqlite:///db.sqlite3",
         conn_max_age=600,
     )
 }
@@ -132,10 +133,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / "static",
 ]
 
 if DEBUG:
@@ -158,14 +159,14 @@ else:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-LOGIN_REDIRECT_URL = 'top:index'
-LOGOUT_REDIRECT_URL = 'top:index'
+LOGIN_REDIRECT_URL = "top:index"
+LOGIN_URL = "accounts:login"  # 未ログイン時のリダイレクト先を明示
+LOGOUT_REDIRECT_URL = "top:index"
 
 
 CSRF_TRUSTED_ORIGINS = os.environ.get(
-    'CSRF_TRUSTED_ORIGINS',
-    'http://127.0.0.1:8000,http://localhost:8000'
-).split(',')
+    "CSRF_TRUSTED_ORIGINS", "http://127.0.0.1:8000,http://localhost:8000"
+).split(",")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -174,3 +175,17 @@ INTERNAL_IPS = [
 
 # NPMホストの設定(Docker環境用)
 NPM_BIN_PATH = "/usr/bin/npm"
+
+
+# --- N+1問題 自動検出設定 (開発環境用) ---
+if DEBUG:
+    # INSTALLED_APPS の先頭に自動挿入
+    INSTALLED_APPS.insert(0, "nplusone.ext.django")
+
+    # ミドルウェアの先頭に自動挿入
+    MIDDLEWARE.insert(0, "nplusone.ext.django.NPlusOneMiddleware")
+
+    # N+1問題を検知した時の挙動設定（ログに警告を出す）
+    NPLUSONE_RAISE = False  # Trueにすると画面をエラーにして強制停止できます
+    NPLUSONE_LOGGER = logging.getLogger("nplusone")
+    NPLUSONE_LOG_LEVEL = logging.WARNING

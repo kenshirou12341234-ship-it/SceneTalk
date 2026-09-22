@@ -1,21 +1,85 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block content %}
-<div>
-  <h1>SceneTalkへようこそ</h1>
-  <p>このアプリは、接客シーンに特化したAI英会話練習アプリです。
-飲食店等で働くスタッフが、外国人のお客様への対応を練習できます。
-</p>
-{% if user.is_authenticated %}
+<div class="relative overflow-hidden bg-white">
+  
+  <!-- グラデーションの背景装飾 -->
+  <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-blue-50/50 to-transparent pointer-events-none hidden lg:block"></div>
+  
+  <div class="max-w-6xl mx-auto px-4 py-16 lg:py-24 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- メッセージ・CTAセクション -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        
+        <div class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider mx-auto lg:mx-0">
+          ✨ 接客特化型 AIシミュレーター
+        </div>
 
-<p>
-  こちらからシーンを選択してください
-  <a href="{% url 'scenes:scene_list' %}" class="text-blue-600 hover:text-blue-500">
-    シーン一覧
-  </a>
-</p>
-{% endif %}
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          現場で活きる英会話を、<br class="hidden sm:inline">
+          <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">AIとのリアルな対話</span>で。
+        </h1>
 
+        <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          SceneTalk（シーントーク）は、飲食店やカフェなどのリアルな店舗シチュエーションを再現した、スタッフのためのAI英会話練習アプリです。外国人ゲストへ自信を持っておもてなしができるスキルを身につけましょう。
+        </p>
+
+        <!-- アカウント状態に応じたボタン分岐 -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          {% if user.is_authenticated %}
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 shadow-sm max-w-md w-full text-left space-y-3">
+              <p class="text-sm font-medium text-slate-500">準備はバッチリです！レッスンを開始しましょう。</p>
+              <a href="{% url 'scenes:scene_list' %}" class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transition-all duration-200 group">
+                シーン一覧を見る
+                <svg xmlns="http://w3.org" class="h-5 w-5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          {% else %}
+            <a href="{% url 'accounts:register' %}" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-blue-600/20 transition-all text-center">
+              無料で始める
+            </a>
+            <a href="{% url 'accounts:login' %}" class="w-full sm:w-auto text-slate-700 hover:text-slate-900 border border-slate-300 font-semibold py-3.5 px-8 rounded-xl transition text-center">
+              ログインはこちら
+            </a>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <!-- 右側のビジュアル風カード装飾（特徴カード） -->
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:pt-0">
+        
+        <div class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-6 rounded-2xl shadow-xl space-y-2">
+          <div class="text-2xl">🎙️</div>
+          <h3 class="font-bold text-lg">音声認識マイク対応</h3>
+          <p class="text-xs text-blue-100 leading-relaxed">リアルな発話練習に対応。喋った英語がそのままテキストに反映されます。</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-2 lg:translate-y-4">
+          <div class="text-2xl">🤖</div>
+          <h3 class="font-bold text-lg text-slate-900">Gemini AI高度判定</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">手本通りの英語でなくても大丈夫。意味が通じていればAIが優しく正解判定します。</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-2">
+          <div class="text-2xl">✨</div>
+          <h3 class="font-bold text-lg text-slate-900">自然な言い換え</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">よりネイティブらしいスマートな接客表現を、先生AIがいつでも提案してくれます。</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-2 lg:translate-y-4">
+          <div class="text-2xl">📊</div>
+          <h3 class="font-bold text-lg">会話履歴の保存</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">あなたの過去の解答やAIからのコメントをデータベースに自動記録。復習も快適です。</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -4,25 +4,34 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Scene',
+            name="Scene",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='シーン名')),
-                ('description', models.TextField(blank=True, verbose_name='説明')),
-                ('display_order', models.PositiveIntegerField(default=0, verbose_name='表示順')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="シーン名")),
+                ("description", models.TextField(blank=True, verbose_name="説明")),
+                (
+                    "display_order",
+                    models.PositiveIntegerField(default=0, verbose_name="表示順"),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
             options={
-                'ordering': ['display_order'],
+                "ordering": ["display_order"],
             },
         ),
     ]

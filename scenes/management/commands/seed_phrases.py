@@ -1,14 +1,18 @@
 import csv
 from pathlib import Path
+
 from django.core.management.base import BaseCommand
-from scenes.models import Scene, Phrase
+
+from scenes.models import Phrase, Scene
 
 
 class Command(BaseCommand):
     help = "CSVファイルからフレーズデータを登録する"
 
     def handle(self, *args, **options):
-        csv_path = Path(__file__).resolve().parent.parent.parent / "fixtures" / "phrases.csv"
+        csv_path = (
+            Path(__file__).resolve().parent.parent.parent / "fixtures" / "phrases.csv"
+        )
         with open(csv_path, encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:

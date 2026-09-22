@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('scenes', '0006_alter_phrase_scene'),
+        ("scenes", "0006_alter_phrase_scene"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='scene',
-            name='background_image',
-            field=models.CharField(default='images/backgrounds/default.png', max_length=255, verbose_name='背景画像パス'),
+            model_name="scene",
+            name="background_image",
+            field=models.CharField(
+                default="images/backgrounds/default.png",
+                max_length=255,
+                verbose_name="背景画像パス",
+            ),
         ),
     ]

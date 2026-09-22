@@ -5,25 +5,49 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('scenes', '0001_initial'),
+        ("scenes", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Phrase',
+            name="Phrase",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('japanese_text', models.CharField(max_length=255, verbose_name='日本語フレーズ')),
-                ('english_text', models.CharField(max_length=255, verbose_name='英語フレーズ')),
-                ('display_order', models.PositiveIntegerField(default=0, verbose_name='表示順')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('scene', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='phrases', to='scenes.scene', verbose_name='シーン')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "japanese_text",
+                    models.CharField(max_length=255, verbose_name="日本語フレーズ"),
+                ),
+                (
+                    "english_text",
+                    models.CharField(max_length=255, verbose_name="英語フレーズ"),
+                ),
+                (
+                    "display_order",
+                    models.PositiveIntegerField(default=0, verbose_name="表示順"),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "scene",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="phrases",
+                        to="scenes.scene",
+                        verbose_name="シーン",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['display_order'],
+                "ordering": ["display_order"],
             },
         ),
     ]

@@ -5,15 +5,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('scenes', '0005_alter_phrase_options_remove_phrase_created_at_and_more'),
+        ("scenes", "0005_alter_phrase_options_remove_phrase_created_at_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='phrase',
-            name='scene',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='phrases', to='scenes.scene'),
+            model_name="phrase",
+            name="scene",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="phrases",
+                to="scenes.scene",
+            ),
         ),
     ]
