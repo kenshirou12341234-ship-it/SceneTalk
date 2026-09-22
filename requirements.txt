@@ -5,3 +5,9 @@ dj-database-url>=2.1.0
 whitenoise[brotli]>=6.6.0
 gunicorn>=21.2.0
 python-dotenv
+google-genai
+pytest
+pytest-django
+factory_boy
+nplusone
+ruff
