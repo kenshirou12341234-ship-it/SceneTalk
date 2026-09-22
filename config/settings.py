@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import logging
 import os
 from pathlib import Path
-
+import sys
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -139,11 +139,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-if DEBUG:
+if DEBUG or 'test' in sys.argv or 'pytest' in sys.argv or any('pytest' in arg for arg in sys.argv):
+
     # 開発環境:collectstatic不要でstaticファイルを直接参照できる
     STORAGES = {
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+
         },
     }
 else:
@@ -151,6 +153,7 @@ else:
     STORAGES = {
         "staticfiles": {
             "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+
         },
     }
 # Default primary key field type
@@ -189,3 +192,5 @@ if DEBUG:
     NPLUSONE_RAISE = False  # Trueにすると画面をエラーにして強制停止できます
     NPLUSONE_LOGGER = logging.getLogger("nplusone")
     NPLUSONE_LOG_LEVEL = logging.WARNING
+
+WHITENOISE_MANIFEST_STRICT = False
