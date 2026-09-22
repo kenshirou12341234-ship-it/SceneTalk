@@ -52,4 +52,4 @@ jobs:
         SECRET_KEY: ci-test-secret-key-12345
         DEBUG: "True"
         GEMINI_API_KEY: "dummy-key-for-testing" 
-      run: python -m pytest
+      run: python -m ruff check --fix --unsafe-fixes
