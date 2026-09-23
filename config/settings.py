@@ -135,17 +135,18 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = []
+if (BASE_DIR / "static").exists():
+    STATICFILES_DIRS.append(BASE_DIR / "static")
 
-if DEBUG or 'test' in sys.argv or 'pytest' in sys.argv or any('pytest' in arg for arg in sys.argv):
+
+if DEBUG:
 
     # 開発環境:collectstatic不要でstaticファイルを直接参照できる
     STORAGES = {
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-
+            
         },
     }
 else:

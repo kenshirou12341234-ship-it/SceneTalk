@@ -185,6 +185,14 @@ def practice_answer_view(request, scene_id):
         if user_answer:
             # 最新の Google GenAI SDK クライアント初期化
             client = genai.Client(api_key=settings.GEMINI_API_KEY)
+            try:
+                models = list(client.models.list())
+                logger.info("利用可能なモデル一覧:")
+                for m in models:
+                    logger.info(m.name)
+            except Exception as e:
+                logger.error(f"モデル一覧の取得に失敗: {e}")
+
 
             # AIへ渡すプロンプトの構成
             prompt = f"""
@@ -219,7 +227,7 @@ def practice_answer_view(request, scene_id):
                 # 指数バックオフ関数を経由して安全に通信を実行
                 response = generate_content_with_retry(
                     client=client,
-                    model="gemini-2.5-flash",
+                    model="gemini-3.6-flash",
                     prompt=prompt,
                     config=config,
                     max_retries=3,  # 最大3回リトライ

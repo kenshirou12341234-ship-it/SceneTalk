@@ -3,98 +3,91 @@
 
 {% block content %}
 {% if error_message %}
-  <p>{{ error_message }}</p>
+  <p class="p-4 text-red-500 font-bold">{{ error_message }}</p>
 {% else %}
-  <div class="relative w-full min-h-screen" 
-       style="background-image: url('{% static scene.background_image %}'); 
-              background-size: cover; 
-              background-position: center;">
 
-    <!-- 外国人NPCの立ち絵(左側・固定) -->
-    <div class="absolute bottom-50 left-10">
+  <!-- 【メイン会話エリア】 (height と position を style で強制指定) -->
+  <div class="w-full bg-gray-100 pb-12" 
+       style="position: relative; height: 700px; background-image: url('{% static scene.background_image %}'); background-size: cover; background-position: center;">
+
+    <!-- 外国人NPCの立ち絵(左側) -->
+    <div style="position: absolute; bottom: 180px; left: 40px; z-index: 10;">
       <img src="{% static 'images/characters/npc_foreign3.png' %}" 
            alt="NPC" 
-           class="h-80 object-contain">
+           style="height: 320px; width: auto; object-fit: contain;">
     </div>
 
-    <!-- 自分(日本人)の立ち絵(right側・固定) -->
-    <div class="absolute bottom-50 right-10">
+    <!-- 自分(日本人)の立ち絵(右側) -->
+    <div style="position: absolute; bottom: 180px; right: 40px; z-index: 10;">
       <img src="{% static 'images/characters/player_japanese4.png' %}" 
            alt="自分" 
-           class="h-80 object-contain">
+           style="height: 320px; width: auto; object-fit: contain;">
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0">
-      <!-- 会話ボックス(画面下部に固定) -->
-      <div class="bg-opacity-70 text-white p-6 min-h-[160px] pb-32"> <!-- 下部の余白を少し広げました -->
-
-        <!-- id="phrase-area" -->
+    <!-- 会話・フィードバックボックス -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 20;">
+      <div class="bg-opacity-70 text-white p-6 min-h-[160px]">
+        <!-- 中身はそのまま -->
+ 
+        <!-- セリフ表示エリア -->
         <div id="phrase-area">
-          <!-- NPCの英語セリフ(常に表示) -->
+          <!-- NPCの英語セリフ -->
           <div class="flex justify-start">
-            <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs" id="npc-text">
-              {{ current_phrase.npc_en }}
+            <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs whitespace-pre-line" id="npc-text">{{ current_phrase.npc_en }}
             </div>
           </div>
 
-          <!-- staff_first のときだけ日本語の問題文を表示 -->
-          {% if current_phrase.turn_order == 'staff_first' %}
-            <div class="flex justify-end">
-              <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs" id="staff-jp-text">
-                {{ current_phrase.staff_jp }}
-              </div>
+          <!-- 日本語の問題文（JavaScriptで制御） -->
+          <div class="flex justify-end mt-2" style="{% if current_phrase.turn_order != 'staff_first' %}display: none;{% endif %}">
+            <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs whitespace-pre-line" id="staff-jp-text">{{ current_phrase.staff_jp }}
             </div>
-          {% endif %}
+          </div>
         </div>
 
-        <!-- feedback表示用エリア -->
-        <div id="feedback-area">
-          {% if feedback and not feedback.is_correct %}
-            <div class="flex justify-start">
-              <div class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg max-w-xs">
-                もう一度お願いします
-              </div>
-            </div>
-          {% endif %}
-        </div>
+        <!-- JSから動的に描画されるフィードバックエリア -->
+        <div id="feedback-area" class="mt-2"></div>
 
       </div>
-
-      <!-- フォームエリア（音声認識コントロールを追加） -->
-      <div id="input-container" class="fixed bottom-20 left-0 w-full bg-white border-t p-4 flex flex-col gap-2"
-           style="{% if current_phrase.turn_order == 'npc_first' %}display: none;{% endif %}"
-        
-        <!-- 状態表示 & エラーメッセージエリア -->
-        <div class="flex justify-between text-sm px-1">
-          <div id="rec-status" class="text-gray-500 font-medium">状態: 停止中</div>
-          <div id="rec-error" class="text-red-500 font-bold"></div>
-        </div>
-
-        <form id="answer-form" data-scene-id="{{ scene.id }}" class="w-full flex gap-2">
-          {% csrf_token %}
-          <input type="text" name="answer" id="answer-input" class="bg-gray-200 border rounded px-3 py-2 flex-1" placeholder="マイクボタンを押して話すか、直接入力してください">
-          
-          <!-- 音声認識用の操作ボタン -->
-          <button type="button" id="start-rec-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]">録音開始</button>
-          <button type="button" id="stop-rec-btn" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]" disabled>停止</button>
-          <button type="button" id="clear-rec-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]">やり直す</button>
-          <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">送信</button>
-        </form>
-      </div>
-
     </div>
+
+  </div><!-- メインエリアの閉じタグ -->
+
+  <!-- 【音声認識・入力コントロール】 -->
+  <div id="input-container" class="w-full bg-white border-t p-4 flex flex-col gap-2"
+       style="{% if current_phrase.turn_order == 'npc_first' %}display: none;{% endif %}">
+    
+    <!-- 状態表示 & エラーメッセージエリア -->
+    <div class="flex justify-between text-sm px-1">
+      <div id="rec-status" class="text-gray-500 font-medium">状態: 停止中</div>
+      <div id="rec-error" class="text-red-500 font-bold"></div>
+    </div>
+
+    <form id="answer-form" data-scene-id="{{ scene.id }}" class="w-full flex gap-2">
+      {% csrf_token %}
+      <input type="text" name="answer" id="answer-input" class="bg-gray-200 border rounded px-3 py-2 flex-1" placeholder="マイクボタンを押して話すか、直接入力してください">
+      
+      <!-- 音声認識・送信操作ボタン -->
+      <button type="button" id="start-rec-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]">録音開始</button>
+      <button type="button" id="stop-rec-btn" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]" disabled>停止</button>
+      <button type="button" id="clear-rec-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded flex items-center justify-center min-w-[80px]">やり直す</button>
+      <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">送信</button>
+    </form>
   </div>
+
+  <!-- ナビゲーションフッター -->
+  <footer class="bg-gray-800 text-white p-4 w-full">
+    <div class="practice-controls flex justify-between max-w-4xl mx-auto text-sm">
+      <a href="{% url 'practice:prev' scene.id %}" class="hover:underline">前に戻る</a>
+      <a href="{% url 'practice:next' scene.id %}" class="hover:underline">次へ進む</a>
+      <a href="{% url 'scenes:scene_list' %}" class="hover:underline">←シーン選択画面に戻る</a>
+      <a href="{% url 'practice:restart' scene_id=scene.id %}" class="hover:underline">最初からやり直す</a>
+    </div>
+  </footer>
+
 {% endif %}
+{% endblock %}
 
-<footer class="bg-gray-800 text-white p-4">
-  <div class="practice-controls flex justify-between max-w-4xl mx-auto">
-    <a href="{% url 'practice:prev' scene.id %}">前に戻る</a>
-    <a href="{% url 'practice:next' scene.id %}">次へ進む</a>
-    <a href="{% url 'scenes:scene_list' %}">←シーン選択画面に戻る</a>
-    <a href="{% url 'practice:restart' scene_id=scene.id %}">最初からやり直す</a>
-  </div>
-</footer>
-
-<script src="{% static 'practice/js/practice.js' %}"></script>
+{% block extra_js %}
+<script src="{% static 'practice/js/practice.js' %}?v=100"></script>
 
 {% endblock %}
