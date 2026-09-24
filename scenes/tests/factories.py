@@ -25,7 +25,7 @@ class SceneFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: f"Scene {n}")
     description = "テスト用のシーン説明"
-
+    background_image = "images/backgrounds/cafe.png"
 
 class ConversationHistoryFactory(factory.django.DjangoModelFactory):
     """会話履歴のテストデータを生成"""
