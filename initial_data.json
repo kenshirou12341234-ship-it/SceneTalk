@@ -1,0 +1,1146 @@
+[
+{
+  "model": "scenes.scene",
+  "pk": 3,
+  "fields": {
+    "name": "居酒屋",
+    "description": "ここで登場する英語フレーズ一覧です\r\n居酒屋店員になりきって挑戦してください",
+    "background_image": "images/backgrounds/izakaya.png",
+    "display_order": 0,
+    "created_at": "2026-09-05T00:22:48.194Z",
+    "updated_at": "2026-09-23T09:43:26.492Z"
+  }
+},
+{
+  "model": "scenes.scene",
+  "pk": 5,
+  "fields": {
+    "name": "カフェ",
+    "description": "ここで登場する英語フレーズ一覧です\r\nカフェ店員になりきって挑戦してください",
+    "background_image": "images/backgrounds/cafe.png",
+    "display_order": 0,
+    "created_at": "2026-09-06T03:26:18.992Z",
+    "updated_at": "2026-09-23T09:43:44.504Z"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 161,
+  "fields": {
+    "scene": 3,
+    "display_order": 1,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 162,
+  "fields": {
+    "scene": 3,
+    "display_order": 2,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "何名様ですか?",
+    "staff_en": "How many people are in your group?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 163,
+  "fields": {
+    "scene": 3,
+    "display_order": 3,
+    "turn_order": "staff_first",
+    "npc_en": "There are two people.",
+    "staff_jp": "お席にご案内します",
+    "staff_en": "I will show you to your seat."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 164,
+  "fields": {
+    "scene": 3,
+    "display_order": 4,
+    "turn_order": "npc_first",
+    "npc_en": "thanks.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 165,
+  "fields": {
+    "scene": 3,
+    "display_order": 5,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらメニュー表です",
+    "staff_en": "Here is the menu."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 166,
+  "fields": {
+    "scene": 3,
+    "display_order": 6,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文お決まりになりましたらお呼び下さい",
+    "staff_en": "Please call us when you are ready to order."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 167,
+  "fields": {
+    "scene": 3,
+    "display_order": 7,
+    "turn_order": "npc_first",
+    "npc_en": "Excuse me can we order?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 168,
+  "fields": {
+    "scene": 3,
+    "display_order": 8,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文お伺いします",
+    "staff_en": "May I take your order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 169,
+  "fields": {
+    "scene": 3,
+    "display_order": 9,
+    "turn_order": "npc_first",
+    "npc_en": "I'd like some tofu and Japanese fried chicken please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 170,
+  "fields": {
+    "scene": 3,
+    "display_order": 10,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お飲み物は何になさいますか?",
+    "staff_en": "What would you like to drink?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 171,
+  "fields": {
+    "scene": 3,
+    "display_order": 11,
+    "turn_order": "npc_first",
+    "npc_en": "Two draft beers please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 172,
+  "fields": {
+    "scene": 3,
+    "display_order": 12,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "わかりました",
+    "staff_en": "Understood"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 173,
+  "fields": {
+    "scene": 3,
+    "display_order": 13,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文は以上でよろしいでしょうか?",
+    "staff_en": "Is that all for your order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 174,
+  "fields": {
+    "scene": 3,
+    "display_order": 14,
+    "turn_order": "npc_first",
+    "npc_en": "That's all",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 175,
+  "fields": {
+    "scene": 3,
+    "display_order": 15,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらお通しです",
+    "staff_en": "This is the appetizer."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 176,
+  "fields": {
+    "scene": 3,
+    "display_order": 16,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちら生ビールと豆腐と唐揚げです",
+    "staff_en": "Here is your draft beer and tofu and fried chicken."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 177,
+  "fields": {
+    "scene": 3,
+    "display_order": 17,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文は揃いましたでしょうか?",
+    "staff_en": "Have all your orders arrived?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 178,
+  "fields": {
+    "scene": 3,
+    "display_order": 18,
+    "turn_order": "npc_first",
+    "npc_en": "yes thanks",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 179,
+  "fields": {
+    "scene": 3,
+    "display_order": 19,
+    "turn_order": "npc_first",
+    "npc_en": "Can I have a wet towel, and small plate, please?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 180,
+  "fields": {
+    "scene": 3,
+    "display_order": 20,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "わかりました",
+    "staff_en": "Understood"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 181,
+  "fields": {
+    "scene": 3,
+    "display_order": 21,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "空いたお皿・グラスをおさげします",
+    "staff_en": "I will clear away the empty plates and glasses"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 182,
+  "fields": {
+    "scene": 3,
+    "display_order": 22,
+    "turn_order": "npc_first",
+    "npc_en": "Excuse me Where is the restroom?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 183,
+  "fields": {
+    "scene": 3,
+    "display_order": 23,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "まっすぐ行って突き当たりを右に曲がったところにあります",
+    "staff_en": "Go straight and turn right at the end."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 184,
+  "fields": {
+    "scene": 3,
+    "display_order": 24,
+    "turn_order": "npc_first",
+    "npc_en": "Check, please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 185,
+  "fields": {
+    "scene": 3,
+    "display_order": 25,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計はご一緒でいいですか?",
+    "staff_en": "Would you like to pay together?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 186,
+  "fields": {
+    "scene": 3,
+    "display_order": 26,
+    "turn_order": "npc_first",
+    "npc_en": "yes",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 187,
+  "fields": {
+    "scene": 3,
+    "display_order": 27,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計が4500円です",
+    "staff_en": "That will be 4500 yen."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 188,
+  "fields": {
+    "scene": 3,
+    "display_order": 28,
+    "turn_order": "npc_first",
+    "npc_en": "Do you accept credit cards?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 189,
+  "fields": {
+    "scene": 3,
+    "display_order": 29,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "はい　使えます",
+    "staff_en": "Yes we do"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 190,
+  "fields": {
+    "scene": 3,
+    "display_order": 30,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらレシートです",
+    "staff_en": "Here is your receipt."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 191,
+  "fields": {
+    "scene": 5,
+    "display_order": 31,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 192,
+  "fields": {
+    "scene": 5,
+    "display_order": 32,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 193,
+  "fields": {
+    "scene": 5,
+    "display_order": 33,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "空いているお席へどうぞ",
+    "staff_en": "Please feel free to take any available seat"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 194,
+  "fields": {
+    "scene": 5,
+    "display_order": 34,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文はお決まりですか?",
+    "staff_en": "Are you ready to order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 195,
+  "fields": {
+    "scene": 5,
+    "display_order": 35,
+    "turn_order": "npc_first",
+    "npc_en": "I'll have a hot coffee and sandwich, please",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 196,
+  "fields": {
+    "scene": 5,
+    "display_order": 36,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "コーヒーのサイズはどうされますか?",
+    "staff_en": "What size coffee would you like?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 197,
+  "fields": {
+    "scene": 5,
+    "display_order": 37,
+    "turn_order": "npc_first",
+    "npc_en": "Medium, please",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 198,
+  "fields": {
+    "scene": 5,
+    "display_order": 38,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "かしこまりました",
+    "staff_en": "Certainly"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 199,
+  "fields": {
+    "scene": 5,
+    "display_order": 39,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "店内でお召し上がりですか?",
+    "staff_en": "For here or to go?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 200,
+  "fields": {
+    "scene": 5,
+    "display_order": 40,
+    "turn_order": "npc_first",
+    "npc_en": "yes",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 201,
+  "fields": {
+    "scene": 5,
+    "display_order": 41,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お待たせしましたホットコーヒーとサンドイッチですごゆっくりどうぞ",
+    "staff_en": "Thank you for waiting. Here is your hot coffee and sandwich. Enjoy"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 202,
+  "fields": {
+    "scene": 5,
+    "display_order": 42,
+    "turn_order": "npc_first",
+    "npc_en": "Check, please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 203,
+  "fields": {
+    "scene": 5,
+    "display_order": 43,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計は1200円になります",
+    "staff_en": "That'll be 1200 yen"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 204,
+  "fields": {
+    "scene": 5,
+    "display_order": 44,
+    "turn_order": "npc_first",
+    "npc_en": "I'll pay 2,000 yen",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 205,
+  "fields": {
+    "scene": 5,
+    "display_order": 45,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "800円のお返しです",
+    "staff_en": "Here is your change of 800 yen"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 206,
+  "fields": {
+    "scene": 3,
+    "display_order": 31,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ありがとうございました。またのお越しをお待ちしております",
+    "staff_en": "Thank you very much. We hope to see you again."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 207,
+  "fields": {
+    "scene": 5,
+    "display_order": 46,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ありがとうございました",
+    "staff_en": "Thank you, have a nice day"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 1,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T11:23:11.368Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 2,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-22T11:23:38.791Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "I will show you to your seat.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "I will show you to your seat."
+    ],
+    "created_at": "2026-09-22T11:25:08.653Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "I will show you to your seat.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "I will show you to your seat."
+    ],
+    "created_at": "2026-09-22T11:25:12.601Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 5,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Here is the menu.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Here is the menu."
+    ],
+    "created_at": "2026-09-22T11:34:12.467Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T11:36:31.205Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 7,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T11:36:31.717Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 8,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-22T11:37:08.116Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 9,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "i will show you to your seat",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "I will show you to your seat."
+    ],
+    "created_at": "2026-09-22T11:37:48.932Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 10,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Here is the menu.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Here is the menu."
+    ],
+    "created_at": "2026-09-22T11:41:48.125Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 11,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T11:44:14.127Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 12,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-22T11:46:02.930Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 13,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "i will show you to your seat",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "I will show you to your seat."
+    ],
+    "created_at": "2026-09-22T11:46:14.297Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 14,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Here is the menu.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Here is the menu."
+    ],
+    "created_at": "2026-09-22T11:46:46.301Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 15,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T11:48:32.638Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 16,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-22T11:49:05.754Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 17,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "i will show you to your seat",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "I will show you to your seat."
+    ],
+    "created_at": "2026-09-22T12:03:01.065Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 18,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Here is the menu.",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Here is the menu."
+    ],
+    "created_at": "2026-09-22T12:03:12.517Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 19,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T12:06:57.764Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 20,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T12:07:46.206Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 21,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Here is the menu.",
+    "is_correct": false,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T12:10:38.408Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 22,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-22T12:10:45.519Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 23,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-23T07:04:51.392Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 24,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-23T07:04:53.371Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 25,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-23T07:10:36.543Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 26,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-23T07:46:58.467Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 27,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "Welcome!"
+    ],
+    "created_at": "2026-09-23T08:00:25.450Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 28,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "How many people are in your group?",
+    "is_correct": true,
+    "feedback_comment": "AI判定中にエラーが発生したため、システム自動判定を行いました。",
+    "native_suggestions": [
+      "How many people are in your group?"
+    ],
+    "created_at": "2026-09-23T08:00:58.311Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 29,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "「Welcome!」で「いらっしゃいませ」という気持ちがしっかりと伝わります。非常に自然で素晴らしい表現です。",
+    "native_suggestions": [
+      "Welcome!",
+      "Welcome to our store!",
+      "Hello, welcome!"
+    ],
+    "created_at": "2026-09-23T08:04:01.751Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 30,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Welcome",
+    "is_correct": true,
+    "feedback_comment": "「Welcome」でしっかりと「いらっしゃいませ」の意図が伝わります。非常に自然で素晴らしい表現です。",
+    "native_suggestions": [
+      "Welcome!",
+      "Welcome to our shop!",
+      "Hello! Welcome in!"
+    ],
+    "created_at": "2026-09-23T09:45:19.905Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 31,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "welcome",
+    "is_correct": true,
+    "feedback_comment": "意味はしっかりと伝わります！文頭を大文字にして「Welcome!」と書くとより良いでしょう。お店などで使う場合は「Welcome to our store!」などのフレーズもよく使われます。",
+    "native_suggestions": [
+      "Welcome!",
+      "Welcome to our store!",
+      "Hello, welcome!"
+    ],
+    "created_at": "2026-09-23T10:33:44.456Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 32,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "welcome",
+    "is_correct": true,
+    "feedback_comment": "「welcome」だけでも「いらっしゃいませ」という意味が十分に伝わります。頭文字を大文字にして「Welcome!」とすると、より丁寧で自然な表記になります。",
+    "native_suggestions": [
+      "Welcome!",
+      "Welcome to our store!",
+      "Hello, welcome!"
+    ],
+    "created_at": "2026-09-23T11:26:03.428Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 33,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "are you to your shit",
+    "is_correct": false,
+    "feedback_comment": "「seat（座席）」が不適切な単語に変わってしまっており、文法的にも意味が通じなくなってしまっています。「お席にご案内します」は I will show you to your seat. や Please follow me. のように表現しましょう。",
+    "native_suggestions": [
+      "I'll show you to your table.",
+      "Please follow me to your seat.",
+      "Right this way, please."
+    ],
+    "created_at": "2026-09-23T11:39:54.099Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 34,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "I will show you to your table",
+    "is_correct": true,
+    "feedback_comment": "「お席にご案内します」という意味がとても自然に表現できています。'table' を使う表現もレストランの現場で非常によく使われる素晴らしいフレーズです。",
+    "native_suggestions": [
+      "I will show you to your table.",
+      "Follow me, please.",
+      "Right this way, please."
+    ],
+    "created_at": "2026-09-23T11:41:12.052Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 35,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "thank you we hope you will see you again",
+    "is_correct": false,
+    "feedback_comment": "Thank youの部分はとても良いですね！ただ、we hope you will see you again だと「あなたがあなた自身にまた会うことを願う」という意味になってしまい、少し意味が通じにくくなってしまいます。「またお会いできるのを楽しみにしています」と伝えたい時は、We hope to see you again. や We hope you will visit us again. などの表現を使いましょう。",
+    "native_suggestions": [
+      "Thank you very much. We hope to see you again.",
+      "Thank you so much. We look forward to seeing you again.",
+      "Thank you. We hope you will visit us again soon."
+    ],
+    "created_at": "2026-09-23T11:43:13.785Z"
+  }
+},
+{
+  "model": "scenes.conversationhistory",
+  "pk": 36,
+  "fields": {
+    "user": 6,
+    "scene": 3,
+    "user_answer": "Thank you very much. We hope to see you again",
+    "is_correct": true,
+    "feedback_comment": "意図が完璧に伝わる素晴らしい表現です！文末のピリオドを忘れないようにすると、さらに完璧な文章になります。",
+    "native_suggestions": [
+      "Thank you very much. We hope to see you again.",
+      "Thank you so much! We look forward to seeing you again.",
+      "Thank you for coming. Have a great day and see you next time!"
+    ],
+    "created_at": "2026-09-23T11:43:38.239Z"
+  }
+}
+]

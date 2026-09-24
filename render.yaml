@@ -1,0 +1,31 @@
+services:
+  # --- Django Webサービス ---
+  - type: web
+    name: scenetalk-web
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+      python manage.py loaddata initial_data.json
+    startCommand: gunicorn config.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: scenetalk-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: GEMINI_API_KEY
+        sync: false # Renderダッシュボード上で後から入力
+
+databases:
+  # --- PostgreSQL データベース ---
+  - name: scenetalk-db
+    databaseName: scenetalk
+    user: scenetalk_user
+    plan: free
