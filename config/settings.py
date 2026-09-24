@@ -199,3 +199,31 @@ if DEBUG:
     NPLUSONE_LOG_LEVEL = logging.WARNING
 
 WHITENOISE_MANIFEST_STRICT = False
+
+
+# --- 本番環境用 ロギング設定 (500エラー等をコンソールに出力) ---
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
