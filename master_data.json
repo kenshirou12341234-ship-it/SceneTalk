@@ -1,0 +1,590 @@
+[
+{
+  "model": "scenes.scene",
+  "pk": 3,
+  "fields": {
+    "name": "居酒屋",
+    "description": "ここで登場する英語フレーズ一覧です\r\n居酒屋店員になりきって挑戦してください",
+    "background_image": "images/backgrounds/izakaya.png",
+    "display_order": 0,
+    "created_at": "2026-09-05T00:22:48.194Z",
+    "updated_at": "2026-09-23T09:43:26.492Z"
+  }
+},
+{
+  "model": "scenes.scene",
+  "pk": 5,
+  "fields": {
+    "name": "カフェ",
+    "description": "ここで登場する英語フレーズ一覧です\r\nカフェ店員になりきって挑戦してください",
+    "background_image": "images/backgrounds/cafe.png",
+    "display_order": 0,
+    "created_at": "2026-09-06T03:26:18.992Z",
+    "updated_at": "2026-09-23T09:43:44.504Z"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 161,
+  "fields": {
+    "scene": 3,
+    "display_order": 1,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 162,
+  "fields": {
+    "scene": 3,
+    "display_order": 2,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "何名様ですか?",
+    "staff_en": "How many people are in your group?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 163,
+  "fields": {
+    "scene": 3,
+    "display_order": 3,
+    "turn_order": "staff_first",
+    "npc_en": "There are two people.",
+    "staff_jp": "お席にご案内します",
+    "staff_en": "I will show you to your seat."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 164,
+  "fields": {
+    "scene": 3,
+    "display_order": 4,
+    "turn_order": "npc_first",
+    "npc_en": "thanks.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 165,
+  "fields": {
+    "scene": 3,
+    "display_order": 5,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらメニュー表です",
+    "staff_en": "Here is the menu."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 166,
+  "fields": {
+    "scene": 3,
+    "display_order": 6,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文お決まりになりましたらお呼び下さい",
+    "staff_en": "Please call us when you are ready to order."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 167,
+  "fields": {
+    "scene": 3,
+    "display_order": 7,
+    "turn_order": "npc_first",
+    "npc_en": "Excuse me can we order?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 168,
+  "fields": {
+    "scene": 3,
+    "display_order": 8,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文お伺いします",
+    "staff_en": "May I take your order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 169,
+  "fields": {
+    "scene": 3,
+    "display_order": 9,
+    "turn_order": "npc_first",
+    "npc_en": "I'd like some tofu and Japanese fried chicken please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 170,
+  "fields": {
+    "scene": 3,
+    "display_order": 10,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お飲み物は何になさいますか?",
+    "staff_en": "What would you like to drink?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 171,
+  "fields": {
+    "scene": 3,
+    "display_order": 11,
+    "turn_order": "npc_first",
+    "npc_en": "Two draft beers please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 172,
+  "fields": {
+    "scene": 3,
+    "display_order": 12,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "わかりました",
+    "staff_en": "Understood"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 173,
+  "fields": {
+    "scene": 3,
+    "display_order": 13,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文は以上でよろしいでしょうか?",
+    "staff_en": "Is that all for your order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 174,
+  "fields": {
+    "scene": 3,
+    "display_order": 14,
+    "turn_order": "npc_first",
+    "npc_en": "That's all",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 175,
+  "fields": {
+    "scene": 3,
+    "display_order": 15,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらお通しです",
+    "staff_en": "This is the appetizer."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 176,
+  "fields": {
+    "scene": 3,
+    "display_order": 16,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちら生ビールと豆腐と唐揚げです",
+    "staff_en": "Here is your draft beer and tofu and fried chicken."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 177,
+  "fields": {
+    "scene": 3,
+    "display_order": 17,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文は揃いましたでしょうか?",
+    "staff_en": "Have all your orders arrived?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 178,
+  "fields": {
+    "scene": 3,
+    "display_order": 18,
+    "turn_order": "npc_first",
+    "npc_en": "yes thanks",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 179,
+  "fields": {
+    "scene": 3,
+    "display_order": 19,
+    "turn_order": "npc_first",
+    "npc_en": "Can I have a wet towel, and small plate, please?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 180,
+  "fields": {
+    "scene": 3,
+    "display_order": 20,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "わかりました",
+    "staff_en": "Understood"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 181,
+  "fields": {
+    "scene": 3,
+    "display_order": 21,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "空いたお皿・グラスをおさげします",
+    "staff_en": "I will clear away the empty plates and glasses"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 182,
+  "fields": {
+    "scene": 3,
+    "display_order": 22,
+    "turn_order": "npc_first",
+    "npc_en": "Excuse me Where is the restroom?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 183,
+  "fields": {
+    "scene": 3,
+    "display_order": 23,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "まっすぐ行って突き当たりを右に曲がったところにあります",
+    "staff_en": "Go straight and turn right at the end."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 184,
+  "fields": {
+    "scene": 3,
+    "display_order": 24,
+    "turn_order": "npc_first",
+    "npc_en": "Check, please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 185,
+  "fields": {
+    "scene": 3,
+    "display_order": 25,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計はご一緒でいいですか?",
+    "staff_en": "Would you like to pay together?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 186,
+  "fields": {
+    "scene": 3,
+    "display_order": 26,
+    "turn_order": "npc_first",
+    "npc_en": "yes",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 187,
+  "fields": {
+    "scene": 3,
+    "display_order": 27,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計が4500円です",
+    "staff_en": "That will be 4500 yen."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 188,
+  "fields": {
+    "scene": 3,
+    "display_order": 28,
+    "turn_order": "npc_first",
+    "npc_en": "Do you accept credit cards?",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 189,
+  "fields": {
+    "scene": 3,
+    "display_order": 29,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "はい　使えます",
+    "staff_en": "Yes we do"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 190,
+  "fields": {
+    "scene": 3,
+    "display_order": 30,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "こちらレシートです",
+    "staff_en": "Here is your receipt."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 191,
+  "fields": {
+    "scene": 5,
+    "display_order": 31,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 192,
+  "fields": {
+    "scene": 5,
+    "display_order": 32,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "いらっしゃいませ",
+    "staff_en": "Welcome!"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 193,
+  "fields": {
+    "scene": 5,
+    "display_order": 33,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "空いているお席へどうぞ",
+    "staff_en": "Please feel free to take any available seat"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 194,
+  "fields": {
+    "scene": 5,
+    "display_order": 34,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ご注文はお決まりですか?",
+    "staff_en": "Are you ready to order?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 195,
+  "fields": {
+    "scene": 5,
+    "display_order": 35,
+    "turn_order": "npc_first",
+    "npc_en": "I'll have a hot coffee and sandwich, please",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 196,
+  "fields": {
+    "scene": 5,
+    "display_order": 36,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "コーヒーのサイズはどうされますか?",
+    "staff_en": "What size coffee would you like?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 197,
+  "fields": {
+    "scene": 5,
+    "display_order": 37,
+    "turn_order": "npc_first",
+    "npc_en": "Medium, please",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 198,
+  "fields": {
+    "scene": 5,
+    "display_order": 38,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "かしこまりました",
+    "staff_en": "Certainly"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 199,
+  "fields": {
+    "scene": 5,
+    "display_order": 39,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "店内でお召し上がりですか?",
+    "staff_en": "For here or to go?"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 200,
+  "fields": {
+    "scene": 5,
+    "display_order": 40,
+    "turn_order": "npc_first",
+    "npc_en": "yes",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 201,
+  "fields": {
+    "scene": 5,
+    "display_order": 41,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お待たせしましたホットコーヒーとサンドイッチですごゆっくりどうぞ",
+    "staff_en": "Thank you for waiting. Here is your hot coffee and sandwich. Enjoy"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 202,
+  "fields": {
+    "scene": 5,
+    "display_order": 42,
+    "turn_order": "npc_first",
+    "npc_en": "Check, please.",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 203,
+  "fields": {
+    "scene": 5,
+    "display_order": 43,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "お会計は1200円になります",
+    "staff_en": "That'll be 1200 yen"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 204,
+  "fields": {
+    "scene": 5,
+    "display_order": 44,
+    "turn_order": "npc_first",
+    "npc_en": "I'll pay 2,000 yen",
+    "staff_jp": "",
+    "staff_en": ""
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 205,
+  "fields": {
+    "scene": 5,
+    "display_order": 45,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "800円のお返しです",
+    "staff_en": "Here is your change of 800 yen"
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 206,
+  "fields": {
+    "scene": 3,
+    "display_order": 31,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ありがとうございました。またのお越しをお待ちしております",
+    "staff_en": "Thank you very much. We hope to see you again."
+  }
+},
+{
+  "model": "scenes.phrase",
+  "pk": 207,
+  "fields": {
+    "scene": 5,
+    "display_order": 46,
+    "turn_order": "staff_first",
+    "npc_en": "",
+    "staff_jp": "ありがとうございました",
+    "staff_en": "Thank you, have a nice day"
+  }
+}
+]
