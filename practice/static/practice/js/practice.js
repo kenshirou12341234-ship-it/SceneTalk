@@ -15,6 +15,32 @@ function getCookie(name) {
   return cookieValue;
 }
 
+// --- Web Speech API (TTS: 音声合成) 関数の定義 ---
+function speakEnglishText(text) {
+  if (!text) return;
+  if (!('speechSynthesis' in window)) {
+    console.warn('このブラウザは音声読み上げに対応していません。');
+    return;
+  }
+
+  // 再生中の音声を一度キャンセル
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.95; // 読み上げ速度（少しゆっくり）
+  utterance.pitch = 1.0;
+
+  // 英語のボイスを選択
+  const voices = window.speechSynthesis.getVoices();
+  const englishVoice = voices.find(v => v.lang.startsWith('en'));
+  if (englishVoice) {
+    utterance.voice = englishVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
 // 画面の要素がすべて読み込まれてから処理を開始する
 document.addEventListener('DOMContentLoaded', () => {
   console.log("practice.js が読み込まれました");
@@ -30,7 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const answerInput = document.getElementById('answer-input');
   const inputContainer = document.getElementById('input-container'); 
 
-  // --- Web Speech API の初期化 ---
+  // --- 初期表示時の AI セリフ自動読み上げ ---
+  const initialNpcText = document.getElementById('npc-text');
+  if (initialNpcText && initialNpcText.textContent.trim()) {
+    // 画面ロード完了後、少し間を置いて発声
+    setTimeout(() => {
+      speakEnglishText(initialNpcText.textContent.trim());
+    }, 500);
+  }
+
+  // --- Web Speech API (STT: 音声認識) の初期化 ---
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let recognition = null;
 
@@ -98,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
           message = '音声が検出されませんでした';
           break;
         case 'network':
-          message = 'ネットワークエラーが発生しました';
+          message = 'ネットワークエラーが発生しました（※Chrome/Edge等でお試しください）';
           break;
       }
       if (recError) recError.textContent = message;
@@ -275,7 +310,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <ul class="list-disc list-inside mt-1 text-slate-300 space-y-1 text-xs italic">
         `;
         data.native_suggestions.forEach(suggestion => {
-          htmlContent += `<li>"${suggestion}"</li>`;
+          // 単語ごとに音声再生できるボタンも併記
+          const escapedSuggestion = suggestion.replace(/'/g, "\\'");
+          htmlContent += `
+            <li class="flex items-center gap-2">
+              <span>"${suggestion}"</span>
+              <button type="button" onclick="speakEnglishText('${escapedSuggestion}')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-0.5 rounded border border-slate-600 transition">
+                🔊 聴く
+              </button>
+            </li>
+          `;
         });
         htmlContent += `
             </ul>
@@ -317,7 +361,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const npcTextEl = document.getElementById('npc-text');
     const staffJpEl = document.getElementById('staff-jp-text');
 
-    if (npcTextEl) npcTextEl.textContent = nextPhrase.npc_en;
+    if (npcTextEl) {
+      npcTextEl.textContent = nextPhrase.npc_en;
+      // 新しいフレーズになったら AI のセリフを自動読み上げ
+      if (nextPhrase.npc_en) {
+        speakEnglishText(nextPhrase.npc_en);
+      }
+    }
 
     if (staffJpEl) {
       const parentFlex = staffJpEl.closest('.flex');
