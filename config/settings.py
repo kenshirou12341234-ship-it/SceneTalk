@@ -33,10 +33,13 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+default_csrf = "http://127.0.0.1:8000,http://localhost:8000,https://scenetalk.onrender.com,https://*.onrender.com"
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
-    "https://scenetalk.onrender.com",
+    origin.strip()
+    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", default_csrf).split(",")
+    if origin.strip()
 ]
+    
 
 # Application definition
 
@@ -172,10 +175,6 @@ LOGIN_REDIRECT_URL = "top:index"
 LOGIN_URL = "accounts:login"  # 未ログイン時のリダイレクト先を明示
 LOGOUT_REDIRECT_URL = "top:index"
 
-
-CSRF_TRUSTED_ORIGINS = os.environ.get(
-    "CSRF_TRUSTED_ORIGINS", "http://127.0.0.1:8000,http://localhost:8000"
-).split(",")
 
 INTERNAL_IPS = [
     "127.0.0.1",
