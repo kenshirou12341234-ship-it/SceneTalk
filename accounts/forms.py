@@ -71,19 +71,17 @@ class CustomUserCreationForm(UserCreationForm):
     def clean(self):
         """
         フォーム全体の最終判定処理
-        password2（確認用）側に標準で付く「このパスワードは〜」などの重複エラーメッセージを
-        すべて「他のパスワードをお試しください」に差し替える
         """
         cleaned_data = super().clean()
 
-        # password2 にエラーが付与されている場合
+        # password2 にエラーがある場合
         if "password2" in self._errors:
-            # 「不一致エラー」以外の強度バリデーションエラーは「他のパスワードをお試しください」に統一
-            p1 = cleaned_data.get("password1")
-            p2 = cleaned_data.get("password2")
-            
-            # パスワードが一致しているのにエラーが出ている場合（Django標準の強度エラーが降ってきた場合）
-            if p1 and p2 and p1 == p2:
+            # cleaned_data ではなく self.data（生入力データ）から取得
+            raw_p1 = self.data.get("password1")
+            raw_p2 = self.data.get("password2")
+
+            # 入力内容が一致しているのにエラーが出ている場合（Django標準の強度判定エラーの場合）
+            if raw_p1 and raw_p2 and raw_p1 == raw_p2:
                 self._errors["password2"] = self.error_class(["他のパスワードをお試しください"])
 
         return cleaned_data
