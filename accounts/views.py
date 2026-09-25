@@ -1,5 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -12,9 +13,12 @@ class RegisterView(CreateView):
     success_url = reverse_lazy("top:index")
 
     def form_valid(self, form):
+        # ユーザーを作成・保存
         user = form.save()
+        # 新規登録直後にそのまま自動ログインを実行
         login(self.request, user)
-        return super().form_valid(form)
+        # success_urlへリダイレクト
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class CustomLoginView(LoginView):

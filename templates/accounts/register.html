@@ -9,6 +9,17 @@
       <p class="text-sm text-slate-500">実践的なAI英会話学習を今すぐ始めましょう</p>
     </div>
 
+    <!-- 共通案内メッセージ（大文字小文字・パスワードルール） -->
+    <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 text-xs text-blue-800 leading-relaxed space-y-1">
+      <p class="font-semibold flex items-center gap-1">
+        <span>💡</span> 入力に関するご注意
+      </p>
+      <ul class="list-disc list-inside space-y-0.5 text-blue-700/90 pl-1">
+        <li>ユーザー名・パスワードともに<strong>英大文字・小文字は区別されます</strong>。</li>
+        <li>パスワードは8文字以上で、<strong>推測されやすい連番・単純な文字列は使用できません</strong>。</li>
+      </ul>
+    </div>
+
     <form method="post" class="space-y-4">
       {% csrf_token %}
 
@@ -30,9 +41,20 @@
                    class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition"
                    required>
           </div>
-          {% if field.help_text %}
-            <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">{{ field.help_text }}</p>
+
+          <!-- 各フィールドごとの個別注意書き -->
+          {% if field.name == 'username' %}
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+              ※英大文字・小文字は区別されます。
+            </p>
+          {% elif field.name == 'password1' or field.name == 'password' %}
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+              ※8文字以上 / 英大文字・小文字区別 / 連番や一般的な単語は不可
+            </p>
+          {% elif field.help_text %}
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">{{ field.help_text|safe }}</p>
           {% endif %}
+
           {% if field.errors %}
             <p class="text-xs text-rose-500 font-medium mt-1">{{ field.errors.0 }}</p>
           {% endif %}
