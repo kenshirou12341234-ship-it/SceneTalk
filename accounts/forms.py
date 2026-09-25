@@ -68,26 +68,22 @@ class CustomUserCreationForm(UserCreationForm):
                 raise ValidationError(new_errors)
         return password
 
-    def clean(self):
+    def _post_clean(self):
         """
-        フォーム全体の最終判定処理
-        UserCreationFormが後から自動追加するpassword2のデフォルトエラーを「他のパスワードをお試しください」に強制置換する
+        Djangoがフォーム検証の『最後（post_clean）』に追加してくる
+        password2 側の標準エラーメッセージをここで確実に差し替える
         """
-        # 親クラスの clean() を実行（ここで password2 へのデフォルトエラーがセットされる）
-        cleaned_data = super().clean()
+        super()._post_clean()
 
-        # password2 にエラーが含まれている場合
+        # _post_clean実行後に password2 にエラーが付与されている場合
         if "password2" in self._errors:
             raw_p1 = self.data.get("password1")
             raw_p2 = self.data.get("password2")
 
-            # パスワード1と2に入力された文字列自体が一致している場合
-            # （＝不一致エラーではなく、パスワード自体の強度不足エラーで弾かれている場合）
+            # パスワード1と2に入力された文字列が一致している場合
+            # （＝不一致エラーではなく、パスワードの強度エラーで弾かれている場合）
             if raw_p1 and raw_p2 and raw_p1 == raw_p2:
-                # password2 のエラーリストを「他のパスワードをお試しください」だけに強制上書き
                 self._errors["password2"] = self.error_class(["他のパスワードをお試しください"])
-
-        return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)
