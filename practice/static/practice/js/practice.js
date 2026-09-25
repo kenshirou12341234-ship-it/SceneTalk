@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Web Speech API (STT: 音声認識) の初期化 ---
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let recognition = null;
+  let accumulatedText = ''; // 息継ぎや言い直し時に過去テキストが消えるのを防ぐ保持用変数
 
   if (SpeechRecognition) {
     recognition = new SpeechRecognition();
@@ -139,34 +140,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // 認識終了イベント
     recognition.onend = () => {
       console.log("🛑 音声認識が終了しました");
+      // 停止したら、それまでに認識できたテキストを蓄積側に確定させておく
+      if (answerInput) {
+        accumulatedText = answerInput.value;
+      }
       if (recStatus && !recStatus.textContent.includes('🤖')) {
         resetRecStatusUI();
       }
     };
 
-    // リアルタイムテキスト反映
+    // リアルタイムテキスト反映（継ぎ足し処理）
     recognition.onresult = (event) => {
-      let finalTranscript = '';
+      let currentSessionFinal = '';
       let interimTranscript = '';
 
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i] && event.results[i][0]) {
           if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
+            currentSessionFinal += event.results[i][0].transcript;
           } else {
             interimTranscript += event.results[i][0].transcript;
           }
         }
       }
+
+      // 今回のセッションで確定(isFinal)した部分があれば、蓄積用テキストに追加する
+      if (currentSessionFinal) {
+        const prefix = (accumulatedText && !accumulatedText.endsWith(' ')) ? ' ' : '';
+        accumulatedText += prefix + currentSessionFinal.trim();
+      }
+
+      // 画面の入力欄には「これまでの蓄積」＋「今喋っている途中の文字(interim)」を表示
       if (answerInput) {
-        answerInput.value = finalTranscript + interimTranscript;
+        const space = (accumulatedText && interimTranscript && !accumulatedText.endsWith(' ')) ? ' ' : '';
+        answerInput.value = accumulatedText + space + interimTranscript;
       }
     };
 
     // エラー処理
     recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
+      // 強制停止(aborted)は正常動作（送信ボタン・クリア時など）のため無害化してログを出さない
       if (event.error === 'aborted') return;
+
+      console.error("Speech recognition error:", event.error);
 
       let message = 'エラーが発生しました';
       switch (event.error) {
@@ -177,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
           message = '音声が検出されませんでした';
           break;
         case 'network':
-          message = 'ネットワークエラーが発生しました（※Chrome/Edge等でお試しく​​ださい）';
+          message = 'ネットワークエラーが発生しました（※Chrome/Edge等でお試しください）';
           break;
       }
       if (recError) recError.textContent = message;
@@ -201,7 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (recError) recError.textContent = '';
       
-      // 念のため起動中のものを一度強制停止してからスタート
+      // 既存の入力欄の値を蓄積用変数にセット（途中で手入力・編集した場合も引き継げるように）
+      if (answerInput) {
+        accumulatedText = answerInput.value.trim();
+      }
+
       try {
         recognition.stop();
       } catch (e) {}
@@ -227,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearRecBtn.addEventListener('click', () => {
       forceStopRecognition();    
       setTimeout(() => {
+        accumulatedText = ''; // クリア時は蓄積テキストも初期化
         if (answerInput) answerInput.value = '';     
         if (recError) recError.textContent = ''; 
         resetRecStatusUI();
@@ -314,6 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await response.json();
         renderFeedback(data);
+        
+        // 送信完了時に蓄積用変数と入力欄をクリア
+        accumulatedText = '';
         if (answerInput) answerInput.value = '';
 
       } catch (error) {
