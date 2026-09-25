@@ -16,6 +16,42 @@ function getCookie(name) {
 }
 
 // --- Web Speech API (TTS: 音声合成) 関数の定義 ---
+
+// 高音質ボイスをキャッシュする変数
+let preferredVoice = null;
+
+// 高品位な英語ボイスを探索してセットする関数
+function loadBestEnglishVoice() {
+  if (!('speechSynthesis' in window)) return;
+  
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return;
+
+  // 高品位な英語ボイスの優先キーワード（OS組み込みの自然な声）
+  const premiumKeywords = ['natural', 'premium', 'google', 'samantha', 'alex', 'karen', 'daniel'];
+  
+  // 英語(en)のボイスだけに絞り込み
+  const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+
+  // 高品位キーワードが含まれるボイスを最優先で検索
+  preferredVoice = englishVoices.find(v => 
+    premiumKeywords.some(keyword => v.name.toLowerCase().includes(keyword))
+  ) || englishVoices.find(v => v.lang === 'en-US') || englishVoices[0];
+
+  if (preferredVoice) {
+    console.log("🔊 選択された高音質ボイス:", preferredVoice.name);
+  }
+}
+
+// ブラウザの音声リスト読み込みタイミング（非同期）に対応
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = loadBestEnglishVoice;
+  loadBestEnglishVoice(); // 初回ロード用
+}
+
+/**
+ * 指定されたテキストを読み上げる関数（高音質ボイス優先）
+ */
 function speakEnglishText(text) {
   if (!text) return;
   if (!('speechSynthesis' in window)) {
@@ -28,14 +64,15 @@ function speakEnglishText(text) {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'en-US';
-  utterance.rate = 0.95; // 読み上げ速度（少しゆっくり）
+  utterance.rate = 0.92; // 自然で聞き取りやすいスピードに微調整
   utterance.pitch = 1.0;
 
-  // 英語のボイスを選択
-  const voices = window.speechSynthesis.getVoices();
-  const englishVoice = voices.find(v => v.lang.startsWith('en'));
-  if (englishVoice) {
-    utterance.voice = englishVoice;
+  // 高品位ボイスがセットされていなければ再読み込みを試みる
+  if (!preferredVoice) {
+    loadBestEnglishVoice();
+  }
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
   }
 
   window.speechSynthesis.speak(utterance);
@@ -73,7 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
     recognition = new SpeechRecognition();
     recognition.lang = 'en-US';        
     recognition.interimResults = true; 
-    recognition.continuous = false;
+    
+    // 【改善点】単発で途切れさせず、話している途中の息継ぎで切れにくくする
+    recognition.continuous = true;
+
+    // 【改善点】ブラウザが対応していれば認識候補数を増やして精度を補正
+    if ('maxAlternatives' in recognition) {
+      recognition.maxAlternatives = 3;
+    }
 
     // 認識開始イベント
     recognition.onstart = () => {
@@ -133,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
           message = '音声が検出されませんでした';
           break;
         case 'network':
-          message = 'ネットワークエラーが発生しました（※Chrome/Edge等でお試しください）';
+          message = 'ネットワークエラーが発生しました（※Chrome/Edge等でお試しく​​ださい）';
           break;
       }
       if (recError) recError.textContent = message;
